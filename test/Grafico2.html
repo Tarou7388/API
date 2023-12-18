@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>grafico 1</title>
+</head>
+<body>
+  <div style="width: 70%; margin: auto;">
+    <canvas id="lienzo"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const contexto = document.querySelector("#lienzo")
+
+    const equipos = [
+      {Pais: "Argentina", puntos: 15},
+      {Pais: "Uruguay", puntos: 13},
+      {Pais: "Colombia", puntos: 12},
+      {Pais: "Venezuela", puntos: 9},
+      {Pais: "Ecuador", puntos: 8},
+      {Pais: "Brasil", puntos: 7},
+      {Pais: "Paraguay", puntos: 5}
+    ]
+
+    const grafico= new Chart(contexto,{
+      type: 'bar',
+      data: {
+        labels: equipos.map(Selection=>Selection.Pais),
+        datasets: [{
+          label: "2022",
+          data: equipos.map(Selection=>Selection.puntos)
+        }]
+      },
+      options: {
+        scales: {
+          y:{
+            max: 20,
+            min: 5
+          }
+        }
+      }
+    })
+
+  </script>
+</body>
+</html>

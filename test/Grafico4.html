@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>grafico 1</title>
+</head>
+
+<body>
+  <div style="width: 70%; margin: auto;">
+    <canvas id="lienzo"></canvas>
+  </div>
+
+  <div style="width: 70%; margin:auto; margin-top:3em; text-align:center">
+    <form action="">
+      <input type="text" id="php" placeholder="php" autofocus>
+      <input type="text" id="javascript" placeholder="javascript">
+      <input type="text" id="csharp" placeholder="C#">
+      <input type="text" id="python" placeholder="python">
+      <button type="button" id="actualizar">Actualizar datos </button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    function $(id) { return document.querySelector(id) }
+
+    const contexto = document.querySelector("#lienzo")
+
+    const grafico = new Chart(contexto, {
+      type: 'bar',
+      data: {
+        labels: ["PHP", "JS", "C#", "PY"],
+        datasets: [{
+          label: "2022",
+          data: [45, 55, 35, 60]
+        }]
+      }
+    })
+
+    $("#actualizar").addEventListener("click", () =>{
+      const nuevosValores = [
+        parseInt($("#php").value),
+        parseInt($("#javascript").value),
+        parseInt($("#csharp").value),
+        parseInt($("#python").value),
+      ]
+      grafico.data.datasets[0].label= "2023"
+      grafico.data.datasets[0].data = nuevosValores;
+      grafico.update();
+    })
+
+  </script>
+</body>
+
+</html>
